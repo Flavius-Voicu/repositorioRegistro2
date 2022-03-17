@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Datos</title>
+	<link rel="icon" href="data:," />
+</head>
+
+<body>
+
+	<div th:replace="navegacion :: navegacion"></div>
+
+	<form th:action="@{/registro/resumen}" method="post">
+
+		<fieldset>
+
+			<legend>Datos personales</legend>
+
+			<label>
+				<span class="negrita">Nombre </span>
+				<input type="text" name="nombre" id="nombre" th:field="*{nombre}" />
+			</label>
+			<br>
+			<label>
+				<span class="negrita">Apellidos</span>
+				<input type="text" name="apellidos" id="apellidos" th:field="*{apellidos}" />
+			</label>
+			<br>
+			<label>
+				<span class="negrita">Fecha de nacimiento</span>
+				<input type="text" name="fechaNac" id="fechaNac" th:field="*{fechaNac}" />
+			</label>
+			<br>
+			<label>
+				<span class="negrita">Género </span>
+				<input type="radio" name="r" value="h" th:field="*{sigGenero}" />Hombre
+				<input type="radio" name="r" value="m" th:field="*{sigGenero}" />Mujer
+				<input type="radio" name="r" value="o" th:field="*{sigGenero}" />Otro
+			</label>
+			<br>
+			<label>
+				<span class="negrita">Nacionalidad</span><br>
+				<select size="5" multiple="multiple" value="nacionalidad">
+					<option value="AN" id="AN" th:field="*{sigPais}">Andorra</option>
+					<option value="ES" id="ES" th:field="*{sigPais}">España</option>
+					<option value="FR" id="FR" th:field="*{sigPais}">Francia</option>
+					<option value="IT" id="IT" th:field="*{sigPais}">Italia</option>
+					<option value="PT" id="PT" th:field="*{sigPais}">Portugal</option>
+				</select>
+			</label>
+			<br>
+			<input type="submit" value="Grabar información e ir al paso 2- Datos profesionales" />
+
+		</fieldset>
+		
+				<fieldset>
+
+			<legend>Datos profesionales</legend>
+
+			<label>
+				<span>Departamento </span>
+				<input type="text" name="departamento" id="departamento" th:field="*{departamento}" />
+			</label>
+			<br>
+			<label>
+				<span>Salario</span>
+				<input type="text" name="salario" id="salario" th:field="*{salario}" />
+			</label>
+			<br>
+			<label>
+				<span class="negrita">Comentarios</span>
+				<br>
+				<textarea name="comentarios" id="comentarios" rows="3" cols="60" th:field="*{comentario}">
+				</textarea>
+			</label>
+			<br>
+			<input type="submit" value="Grabar información e ir al paso 3- Datos bancarios" />
+
+		</fieldset>
+		
+		<fieldset>
+
+			<legend>Datos bancarios</legend>
+
+			<label>
+				<span>Cuenta Corriete</span>
+				<input type="text" name="cuenta" id="cuenta" th:field="*{cuenta}" />
+			</label>
+			<br>
+			<input type="submit" value="Grabar información e ir al resumen final" />
+
+		</fieldset>
+	</form>
+
+</body>
+
+</html>

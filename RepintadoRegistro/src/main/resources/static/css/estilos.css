@@ -1,0 +1,18 @@
+.rojo {
+	color: red;
+}
+.negrita {
+	font-weight: bold;	
+}
+
+.panelControl{
+	height:25%;
+	width: 100%;
+
+}
+
+.contenido{
+	height:auto;
+	width:100;
+
+}

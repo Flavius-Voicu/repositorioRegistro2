@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Datos</title>
+	<link rel="icon" href="data:," />
+</head>
+
+<body>
+
+	<div th:replace="navegacion :: navegacion"></div>
+
+	<form th:action="@{/registro/paso2}" method="post" th:object="${DatosProfesionales}">
+
+		<fieldset>
+
+			<legend>Datos profesionales</legend>
+
+			<label>
+				<span>Departamento </span>
+				<input type="text" name="departamento" id="departamento" th:field="*{departamento}" />
+			</label>
+			<br>
+			<label>
+				<span>Salario</span>
+				<input type="text" name="salario" id="salario" th:field="*{salario}" />
+			</label>
+			<br>
+			<label>
+				<span class="negrita">Comentarios</span>
+				<br>
+				<textarea name="comentarios" id="comentarios" rows="3" cols="60" th:field="*{comentario}">
+				</textarea>
+			</label>
+			<br>
+			<input type="submit" value="Grabar información e ir al paso 3- Datos bancarios" />
+
+		</fieldset>
+
+	</form>
+
+
+</body>
+
+</html>

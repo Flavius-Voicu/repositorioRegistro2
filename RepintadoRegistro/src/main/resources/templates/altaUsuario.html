@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title th:utext="#{formAlta.title}"></title>
+	<link rel="icon" href="data:," />
+	<link rel="stylesheet" th:href="@{/css/estilos.css}" />
+</head>
+
+<body>
+	<div class="panelControl">
+		<div>
+			<span th:text="${ip}" />
+			<span th:text="${equipo}" />
+		</div>
+	</div>
+
+	<div class="contenido">
+
+		<h1 th:text="#{formAlta.h1.titulo}"></h1>
+
+		<form th:action="@{/usuario/alta}" method="post" th:object="${usuario}">
+
+			<fieldset>
+				<legend class="negrita" th:text="#{formAlta.campo.registroUsuario}"></legend>
+				
+				<label>
+					<span class="rojo negrita">*</span>
+					<span class="negrita" th:text="#{formAlta.usuario.etiqueta}" />
+					<input type="text" name="usuario" id="usuario" th:field="*{usuario}" />
+					<span class="rojo negrita" th:each="err : ${#fields.errors('usuario')}" th:text="|${err} &emsp;|" />
+				</label>
+				<br>
+				<label>
+					<span class="rojo negrita">*</span>
+					<span class="negrita" th:text="#{formAlta.clave.etiqueta}" />
+					<input type="password" name="clave" id="clave" th:field="*{clave}" />
+					<span class="rojo negrita" th:each="error: ${#fields.errors('clave')}" th:utext="|${error} &emsp;|" />
+				</label>
+				<br>
+				<label>
+					<span class="rojo negrita">*</span>
+					<span class="negrita" th:text="#{formAlta.confirmaClave.etiqueta}" />
+					<input type="password" name="confirmClave" id="confirmClave" th:field="*{confirmClave}" />
+					<span class="rojo negrita" th:each="error: ${#fields.errors('confirmClave')}" th:text="|${error} &emsp;|" />
+					<span class="rojo negrita" th:text="${errorClave}"/>
+				</label>
+				<br>
+				<label>
+					<span>*</span>
+					<span class="negrita" th:text="#{formAlta.fotoPerfil.etiqueta}" />
+					<input type="file" name="fotoPerfil" id="fotoPerfil" th:field="*{rutaFoto}" />
+				</label>
+				<br>
+				
+			</fieldset>
+
+			<fieldset>
+
+				<legend class="negrita" th:text="#{formAlta.campo.datosPersonales}"></legend>
+
+				<label>
+					<span class="rojo negrita">*</span>
+					<span class="negrita" th:text="#{formAlta.apellido1.etiqueta}" />
+					<input type="text" name="apellido1" id="apellido1" th:field="*{apellido1}" />
+					<span class="rojo negrita" th:each="error: ${#fields.errors('apellido1')}" th:utext="${error}" />
+				</label>
+				<br>
+				<label>
+					<span>*</span>
+					<span class="negrita" th:text="#{formAlta.apellido2.etiqueta}" />
+					<input type="text" name="apellido2" id="apellido2" th:field="*{apellido2}" />
+				</label>
+				<br>
+				<label>
+					<span class="rojo negrita">*</span>
+					<span class="negrita" th:text="#{formAlta.nombre.etiqueta}" />
+					<input type="text" name="nombre" id="nombre" th:field="*{nombre}" />
+					<span class="rojo negrita" th:each="error: ${#fields.errors('nombre')}" th:utext="${error}" />
+				</label>
+				<br>
+				<label>
+					<span class="rojo negrita">*</span>
+					<span class="negrita" th:text="#{formAlta.genero.etiqueta}" />
+					<input type="radio" name="r" value="h" th:field="*{sigGenero}"/>Hombre
+					<input type="radio" name="r" value="f" th:field="*{sigGenero}"/>Fluido
+					<input type="radio" name="r" value="m" th:field="*{sigGenero}"/>Mujer
+					<input type="radio" name="r" value="o" th:field="*{sigGenero}"/>Otro
+					<span class="rojo negrita" th:each="error: ${#fields.errors('sigGenero')}" th:utext="${error}" />
+				</label>
+				<br>
+				<input type="button" th:value="#{formAlta.boton.deSelGen}" />
+				<br>
+				<label>
+					<span class="rojo negrita">*</span>
+					<span class="negrita" th:text="#{formAlta.fechaNac.etiqueta}" />
+					<input type="text" name="fechaNac" id="fechaNac" th:field="*{fechNacimiento}" />
+					<span class="rojo negrita" th:each="error: ${#fields.errors('fechNacimiento')}" th:utext="${error}" />
+				</label>
+				<br>
+				<label>
+					<span class="rojo negrita">*</span>
+					<span class="negrita" th:text="#{formAlta.pais.etiqueta}"/>
+					<select th:field="*{sigPais}">
+						<option value="AN" id="AN">Andorra</option>
+						<option value="ES" id="ES">España</option>
+						<option value="FR" id="FR">Francia</option>
+						<option value="IT" id="IT">Italia</option>
+						<option value="PT" id="PT">Portugal</option>
+					</select>
+					<span class="rojo negrita" th:each="error: ${#fields.errors('sigPais')}" th:utext="${error}" />
+				</label>
+				<br>
+				<label>
+					<span class="rojo negrita">*</span>
+					<span class="negrita" th:text="#{formAlta.aficiones.etiqueta}"  />
+					<input type="checkbox" value="cine" th:field="*{listSigAficiones}"/>Cine
+					<input type="checkbox" value="deporte" th:field="*{listSigAficiones}"/>Deporte
+					<input type="checkbox" value="lectura" th:field="*{listSigAficiones}"/>Lectura
+					<input type="checkbox" value="musica" th:field="*{listSigAficiones}"/>Música
+					<span class="rojo negrita" th:each="error: ${#fields.errors('listSigAficiones')}" th:utext="${error}" />
+				</label>
+				<br>
+				<input type="button" th:value="#{formAlta.boton.deSelAfi}" />
+				<input type="button" th:value="#{formAlta.boton.selAfi}" />
+				<br>
+				<label>
+					<span class="rojo negrita">*</span>
+					<span class="negrita" th:text="#{formAlta.musicas.etiqueta}" />
+					<span class="rojo negrita" th:each="error: ${#fields.errors('listSigMus')}" th:utext="${error}" />
+					<br>
+					<select size="5" multiple="multiple" th:field="*{listSigMus}">
+						<option value="D" id="disco">Disco</option>
+						<option value="E" id="electro">Electrónica</option>
+						<option value="N" id="new">New Age</option>
+						<option value="P" id="pop">Pop</option>
+						<option value="R" id="rock">Rock</option>
+					</select>
+					
+				</label>
+				<br>
+				<input type="button" th:value="#{formAlta.boton.deSelMus}" />
+				<br>
+				<input type="button" th:value="#{formAlta.boton.selMus}" />
+				<br>
+				<label>
+					<span>*</span>
+					<span class="negrita" th:text="#{formAlta.comentario.etiqueta}" />
+					<br>
+					<textarea name="comentario" id="comentario" rows="3" cols="60" th:field="*{comment}">
+					</textarea>
+				</label>
+
+			</fieldset>
+
+			<fieldset>
+				<legend class="negrita" th:text="#{formAlta.campo.gestionFormulario}"></legend>
+
+				<input type="submit" th:value="#{formAlta.submit.texto}" />
+				<input type="button" th:value="#{formAlta.reset.texto}" />
+				<input type="button" th:value="#{formAlta.vaciar.texto}" />
+				<br>
+
+			</fieldset>
+
+		</form>
+
+		<a href="/acceso/login">Inicia sesión</a>
+
+	</div>
+</body>
+
+</html>
